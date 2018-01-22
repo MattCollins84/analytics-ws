@@ -32,7 +32,7 @@ const singleImage = (params, callback) => {
             err
           ]
         });
-        return callback(null, stdout);
+        return callback(null, data);
       });
     });
   });
