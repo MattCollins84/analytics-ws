@@ -1,0 +1,17 @@
+[
+  {
+    "description": "Analyse a single image",
+    "method": "POST",
+    "url": "/image/analyse",
+    "controller": "image",
+    "action": "singleImage",
+    "params": [
+      {
+        "name": "image",
+        "required": true,
+        "type": "file",
+        "default": false
+      }
+    ]
+  }
+]
