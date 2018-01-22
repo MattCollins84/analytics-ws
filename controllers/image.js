@@ -24,7 +24,7 @@ const singleImage = (params, callback) => {
           err
         ]
       });
-      fs.read(tmpOutput, (err, data) => {
+      fs.readFile(tmpOutput, (err, data) => {
         if (err) return callback({
           status: 500,
           errorMessage: "There was a problem reading the analysis output",
