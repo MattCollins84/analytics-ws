@@ -14,7 +14,7 @@ const singleImage = (params, callback) => {
       ]
     });
 
-    exec(`/home/analytics/code/darknet/darknet ${tmpName}`, (err, stdout, stderr) => {
+    exec(`/home/analytics/code/darknet/darknet ${tmpName} ${tmpName}-output.txt`, (err, stdout, stderr) => {
       if (err || stderr) return callback({
         status: 500,
         errorMessage: "There was a problem analysing this file",
