@@ -32,7 +32,7 @@ const singleImage = (params, callback) => {
             err
           ]
         });
-        return callback(null, data.tpString('utf8'));
+        return callback(null, data.toString('utf8'));
       });
     });
   });
