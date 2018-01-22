@@ -17,11 +17,11 @@ const singleImage = (params, callback) => {
     });
 
     exec(`/home/analytics/code/darknet/darknet ${tmpName} ${tmpOutput}`, (err, stdout, stderr) => {
-      if (err || stderr) return callback({
+      if (err) return callback({
         status: 500,
         errorMessage: "There was a problem analysing this file",
         errors: [
-          err || stderr
+          err
         ]
       });
       fs.read(tmpOutput, (err, data) => {
