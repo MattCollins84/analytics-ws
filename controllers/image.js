@@ -75,7 +75,9 @@ const singleImage = (params, callback) => {
           });
 
           // blue
-          const colour = [255, 0, 0];
+          const red = [0, 0, 255];
+          const green = [0, 255, 0];
+          const blue = [255, 0, 0];
 
           // capture the detections and draw a rectangle for each
           const detections = data.detections;
@@ -84,8 +86,9 @@ const singleImage = (params, callback) => {
             // outputImg.putText(detection.name, detection.x, detection.y + 20, "HERSEY_SIMPLEX", colour, 2, 1);
           });
 
-          outputImg.putText("TEST", 25, 20, "HERSEY_SIMPLEX", colour, 2, 1);
-          outputImg.putText("TEST", 25, 60, "HERSEY_SIMPLEX", colour, 4, 0.5);
+          outputImg.putText("TEST", 25, 20, "HERSEY_SIMPLEX", red, 2, 1);
+          outputImg.putText("TEST", 25, 120, "HERSEY_SIMPLEX", green, 2, 1);
+          outputImg.putText("TEST", 25, 220, "HERSEY_SIMPLEX", blue, 2, 1);
 
           // write to tmp detections image
           outputImg.save(tmpDetectionsImg);
