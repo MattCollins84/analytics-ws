@@ -86,9 +86,9 @@ const singleImage = (params, callback) => {
             // outputImg.putText(detection.name, detection.x, detection.y + 20, "HERSEY_SIMPLEX", colour, 2, 1);
           });
 
-          outputImg.putText("TEST", 25, 20, "HERSEY_SIMPLEX", red, 2, 1);
+          outputImg.putText("TEST", 25, 20, "HERSEY_SIMPLEX", red, 1, 1);
           outputImg.putText("TEST", 25, 120, "HERSEY_SIMPLEX", green, 2, 1);
-          outputImg.putText("TEST", 25, 220, "HERSEY_SIMPLEX", blue, 2, 1);
+          outputImg.putText("TEST", 25, 220, "HERSEY_SIMPLEX", blue, 4, 1);
 
           // write to tmp detections image
           outputImg.save(tmpDetectionsImg);
