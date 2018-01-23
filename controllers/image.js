@@ -46,7 +46,20 @@ const singleImage = (params, callback) => {
         });
 
         // parse output data?
-        console.log(data);
+        let lines = data.toString('utf8').split("\n");
+        lines = lines.reduce((arr, line) => {
+          const bits = line.split("\t");
+          const obj = {
+            name: bits[0],
+            confidence: bits[1],
+            x: bits[2],
+            y: bits[3],
+            width: bits[4],
+            height: bits[5]
+          };
+          arr.push(obj);
+          return arr;
+        }, [])
 
         // load the image into opencv
         // cv.imreadAsync(tmpName, (err, outputImg) => {
@@ -71,7 +84,7 @@ const singleImage = (params, callback) => {
 
         //   // write to tmp detections image
         //   cv.imwriteAsync(tmpDetectionsImg, outputImg, (err) => {
-            return callback(null, data.toString('utf8'));
+            return callback(null, lines);
           // });
 
         // });
