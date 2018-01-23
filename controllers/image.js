@@ -1,6 +1,6 @@
 const { exec } = require('child_process');
 const fs = require('fs');
-// const cv = require('opencv');
+const cv = require('opencv');
 
 // analyse a single image
 const singleImage = (params, callback) => {
