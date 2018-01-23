@@ -82,13 +82,13 @@ const singleImage = (params, callback) => {
           // capture the detections and draw a rectangle for each
           const detections = data.detections;
           detections.forEach(detection => {
-            // outputImg.rectangle([detection.x, detection.y], [detection.w, detection.h], colour, 2);
-            // outputImg.putText(detection.name, detection.x, detection.y + 20, "HERSEY_SIMPLEX", colour, 2, 1);
+            outputImg.rectangle([detection.x, detection.y], [detection.w, detection.h], red, 2);
+            outputImg.putText(detection.name, detection.x, detection.y + 20, "HERSEY_SIMPLEX", red, 0.5, 2);
           });
 
-          outputImg.putText("TEST", 25, 20, "HERSEY_SIMPLEX", red, 1, 2);
-          outputImg.putText("TEST", 25, 120, "HERSEY_SIMPLEX", green, 2, 3);
-          outputImg.putText("TEST", 25, 220, "HERSEY_SIMPLEX", blue, 4, 4);
+          // outputImg.putText("TEST", 25, 20, "HERSEY_SIMPLEX", red, 1, 2);
+          // outputImg.putText("TEST", 25, 120, "HERSEY_SIMPLEX", green, 2, 3);
+          // outputImg.putText("TEST", 25, 220, "HERSEY_SIMPLEX", blue, 4, 4);
 
           // write to tmp detections image
           outputImg.save(tmpDetectionsImg);
