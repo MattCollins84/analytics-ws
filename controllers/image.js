@@ -81,6 +81,7 @@ const singleImage = (params, callback) => {
           const detections = data.detections;
           detections.forEach(detection => {
             outputImg.rectangle([detection.x, detection.y], [detection.w, detection.h], colour, 2);
+            outputImg.putText(detection.name, detection.x, detection.y + 20, "HERSEY_SIMPLEX", colour, 2, 1);
           });
 
           // write to tmp detections image
