@@ -83,7 +83,7 @@ const singleImage = (params, callback) => {
           const detections = data.detections;
           detections.forEach(detection => {
             outputImg.rectangle([detection.x, detection.y], [detection.w, detection.h], red, 2);
-            outputImg.putText(detection.name, detection.x + 10, detection.y, "HERSEY_SIMPLEX", red, 0.5, 2);
+            outputImg.putText(detection.name, detection.x + 10, detection.y + 15, "HERSEY_SIMPLEX", red, 0.5, 2);
           });
 
           // outputImg.putText("TEST", 25, 20, "HERSEY_SIMPLEX", red, 1, 2);
