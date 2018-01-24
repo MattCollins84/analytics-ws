@@ -36,6 +36,9 @@ const singleImage = (params, callback) => {
         ]
       });
 
+      console.log("STD OUT")
+      console.log(stdout);
+
       // read the output data
       fs.readFile(tmpOutput, (err, data) => {
         
