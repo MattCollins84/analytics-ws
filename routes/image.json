@@ -22,7 +22,7 @@
   },
   {
     "description": "Analyse a single image",
-    "method": "POST",
+    "method": "GET",
     "url": "/image/nothing",
     "controller": "image",
     "action": "nothing",
