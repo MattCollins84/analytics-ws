@@ -13,6 +13,8 @@ const singleImage = (params, callback) => {
   const tmpOutput = `${tmpName}-output.txt`;
   // tmp filename of original image with detections drawn
   const tmpDetectionsImg = `./images/${ts}-${params.image.name}`;
+  // do we want process 1 or 0
+  const processId = Date.now() % 2;
 
   // move the uploaded image to the tmp location
   params.image.mv(tmpName, (err) => {
@@ -26,7 +28,7 @@ const singleImage = (params, callback) => {
     });
 
     // run YOLO on tmp image
-    exec(`/home/analytics/Projects/IPC/cvImgAnalytics ${tmpName} ${tmpOutput}`, (err, stdout, stderr) => {
+    exec(`/home/analytics/Projects/IPC/cvImgAnalytics ${tmpName} ${processId}`, (err, stdout, stderr) => {
       
       if (err) return callback({
         status: 500,
