@@ -40,19 +40,19 @@ const singleImage = (params, callback) => {
       console.log(stdout);
 
       // read the output data
-      fs.readFile(tmpOutput, (err, data) => {
+      // fs.readFile(tmpOutput, (err, data) => {
         
-        if (err) return callback({
-          status: 500,
-          errorMessage: "There was a problem reading the analysis output",
-          errors: [
-            err
-          ]
-        });
+      //   if (err) return callback({
+      //     status: 500,
+      //     errorMessage: "There was a problem reading the analysis output",
+      //     errors: [
+      //       err
+      //     ]
+      //   });
 
         // parse output data
         try {
-          data = JSON.parse(data.toString('utf8'))
+          data = JSON.parse(stdout.toString('utf8'))
         } catch (e) {
           return callback({
             status: 500,
@@ -99,7 +99,7 @@ const singleImage = (params, callback) => {
 
         });
         
-      });
+      // });
 
     });
 
