@@ -11,6 +11,12 @@
         "required": true,
         "type": "file",
         "default": false
+      },
+      {
+        "name": "annotate",
+        "required": false,
+        "type": "boolean",
+        "default": false
       }
     ]
   }
