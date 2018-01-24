@@ -36,8 +36,6 @@ const singleImage = (params, callback) => {
         ]
       });
 
-      console.log(stdout);
-
       // read the output data
       fs.readFile(tmpOutput, (err, data) => {
         
@@ -61,7 +59,6 @@ const singleImage = (params, callback) => {
             ]
           });
         }
-        console.log(data);
 
         // load the image into opencv
         cv.readImage(tmpName, (err, outputImg) => {
