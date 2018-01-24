@@ -13,8 +13,8 @@ const singleImage = (params, callback) => {
   const tmpOutput = `${tmpName}-output.txt`;
   // tmp filename of original image with detections drawn
   const tmpDetectionsImg = `./images/${ts}-${params.image.name}`;
-  // do we want process 1 or 0
-  const processId = Date.now() % 2;
+  // do we want process 2, 1, or 0
+  const processId = Date.now() % 3;
 
   // move the uploaded image to the tmp location
   params.image.mv(tmpName, (err) => {
