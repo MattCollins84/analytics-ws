@@ -14,7 +14,7 @@ const singleImage = (params, callback) => {
   // tmp filename of original image with detections drawn
   const tmpDetectionsImg = `./images/${ts}-${params.image.name}`;
   // do we want process 2, 1, or 0
-  const processId = Date.now() % 3;
+  const processId = Date.now() % 2;
 
   // move the uploaded image to the tmp location
   params.image.mv(tmpName, (err) => {
