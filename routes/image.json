@@ -19,5 +19,13 @@
         "default": false
       }
     ]
+  },
+  {
+    "description": "Analyse a single image",
+    "method": "POST",
+    "url": "/image/nothing",
+    "controller": "image",
+    "action": "nothing",
+    "params": []
   }
 ]

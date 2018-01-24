@@ -2,6 +2,14 @@ const { exec } = require('child_process');
 const fs = require('fs');
 const cv = require('opencv');
 
+const nothing = (params, callback) => {
+
+  setTimeout(function() {
+    return callback(null, {})
+  }, 100)
+
+}
+
 // analyse a single image
 const singleImage = (params, callback) => {
 
@@ -97,5 +105,6 @@ const singleImage = (params, callback) => {
 
 
 module.exports = {
-  singleImage
+  singleImage,
+  nothing
 }
