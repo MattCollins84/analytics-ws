@@ -57,7 +57,7 @@ const singleImageClassify = (params, callback) => {
         result.detections.forEach(detection => {
           const detectionClass = config.hash[detection.name];
           if (params.classes.indexOf(detectionClass) !== -1) {
-            data.detections[detectionclass].push(detection);
+            data.detections[detectionClass].push(detection);
           }
           else {
             data.detections.misc.push(detection);
