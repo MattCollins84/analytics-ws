@@ -40,7 +40,32 @@ const singleImageClassify = (params, callback) => {
     async.parallel(actions, (err, results) => {
 
       if (err) return callback(err);
-      return callback(null, results);
+
+      const data = {
+        ImgW: results[0].ImgW,
+        ImgH: results[0].ImgH,
+        detections: {
+          misc: []
+        }
+      }
+
+      params.classes.forEach(className => {
+        data.detections[className] = [];
+      });
+      
+      results.forEach(result => {
+        result.detections.forEach(detection => {
+          const detectionClass = config.hash[detection.name];
+          if (param.classes.indexOf(detectionClass) !== -1) {
+            data.detections[detectionclass].push(detection);
+          }
+          else {
+            data.detections.misc.push(detection);
+          }
+        })
+      })
+
+      return callback(null, data);
 
     });
 
