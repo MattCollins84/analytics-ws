@@ -4,6 +4,7 @@ const classify = require('../lib/classify');
 const Detections = require('../lib/detections');
 const annotate = Detections.annotate;
 const blur = Detections.blur;
+const collate = Detections.collate;
 const Config = require('../lib/config');
 const config = new Config('custom');
 const async = require('async');
@@ -67,7 +68,6 @@ const singleImageClassify = (params, callback) => {
       // default to "misc" if no match
       results.forEach(result => {
         result.detections.forEach(detection => {
-          console.log(detection.name);
           const detectionClass = config.hash[detection.name];
           if (params.classes.indexOf(detectionClass) !== -1) {
             data.detections[detectionClass].push(detection);
@@ -95,12 +95,12 @@ const singleImageClassify = (params, callback) => {
           });
 
           // perform processing
-          outputImg = annotate(outputImg, params.annotate);
-          outputImg = blur(outputImg, params.blur);
+          outputImg = annotate(outputImg, collate(data.detections, params.annotate));
+          outputImg = blur(outputImg, collate(data.detections, params.blur));
 
           // save image and add url to output
           outputImg.save(tmpDetectionsImg);
-          data.imgUrl = `${config.hostname}/images/${filename}`;
+          data.imgUrl = `${config.hostname}/${filename}`;
 
           return callback(null, data);
 

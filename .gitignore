@@ -1,5 +1,5 @@
 .DS_Store
 node_modules
-dog.jpg
+testimages
 images/*.png
 images/*.jpg
