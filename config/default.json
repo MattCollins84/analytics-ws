@@ -11,7 +11,25 @@
           "car",
           "truck",
           "bus",
-          "motorbike"
+          "motorbike",
+          "aeroplane",
+          "train",
+          "boat"
+        ],
+        "signs": [
+          "stop sign"
+        ],
+        "animals": [
+          "bird",
+          "cat",
+          "dog",
+          "horse",
+          "sheep",
+          "cow",
+          "elephant",
+          "bear",
+          "zebra",
+          "giraffe"
         ]
       }
     }

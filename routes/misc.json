@@ -1,0 +1,10 @@
+[
+  {
+    "description": "Shows the available class names",
+    "method": "GET",
+    "url": "/classes",
+    "controller": "misc",
+    "action": "classes",
+    "params": []
+  }
+]
