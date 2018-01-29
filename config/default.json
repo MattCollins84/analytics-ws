@@ -10,7 +10,8 @@
         "vehicles": [
           "car",
           "truck",
-          "bus"
+          "bus",
+          "motorbike"
         ]
       }
     }
