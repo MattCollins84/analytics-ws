@@ -4,7 +4,8 @@ const async = require('async');
 
 // return available classes
 const classes = (params, callback) => {
-  return callback(null, config.getAvailableClasses());
+  if (params.verbose === false) return callback(null, config.getAvailableClasses());
+  return callback(null, config.getAvailableClassesVerbose());
 }
 
 

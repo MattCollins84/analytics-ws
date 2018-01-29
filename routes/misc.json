@@ -5,6 +5,13 @@
     "url": "/classes",
     "controller": "misc",
     "action": "classes",
-    "params": []
+    "params": [
+      {
+        "name": "verbose",
+        "type": "boolean",
+        "required": false,
+        "default": false
+      }
+    ]
   }
 ]
