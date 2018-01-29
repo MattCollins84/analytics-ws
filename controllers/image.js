@@ -1,6 +1,9 @@
 const fs = require('fs');
 const cv = require('opencv');
 const classify = require('../lib/classify');
+const Detections = require('../lib/detections');
+const annotate = Detections.annotate;
+const blur = Detections.blur;
 const Config = require('../lib/config');
 const config = new Config('custom');
 const async = require('async');
@@ -10,10 +13,12 @@ const singleImageClassify = (params, callback) => {
 
   // timestamp
   const ts = Date.now();
+  // filename
+  const filename = `${ts}-${params.image.name}`
   // tmp filename of original image
-  const tmpName = `/tmp/${ts}-${params.image.name}`;
+  const tmpName = `/tmp/${filename}`;
   // tmp filename of original image with detections drawn
-  const tmpDetectionsImg = `./images/${ts}-${params.image.name}`;
+  const tmpDetectionsImg = `./images/${filename}`;
 
   // move the uploaded image to the tmp location
   params.image.mv(tmpName, (err) => {
@@ -26,6 +31,8 @@ const singleImageClassify = (params, callback) => {
       ]
     });
 
+    // determine which classifier commands we need to run
+    // add a new action per command
     const actions = [];
     config.getClassifierCommands(params.classes).forEach(classifierParam => {
       const func = function(callback) {
@@ -37,10 +44,12 @@ const singleImageClassify = (params, callback) => {
       actions.push(func);
     })
 
+    // run the actions in parallel
     async.parallel(actions, (err, results) => {
 
       if (err) return callback(err);
 
+      // create return object
       const data = {
         ImgW: results[0].ImgW,
         ImgH: results[0].ImgH,
@@ -49,12 +58,16 @@ const singleImageClassify = (params, callback) => {
         }
       }
 
+      // add detection groups for specified classes
       params.classes.forEach(className => {
         data.detections[className] = [];
       });
       
+      // collate detections into detection groups
+      // default to "misc" if no match
       results.forEach(result => {
         result.detections.forEach(detection => {
+          console.log(detection.name);
           const detectionClass = config.hash[detection.name];
           if (params.classes.indexOf(detectionClass) !== -1) {
             data.detections[detectionClass].push(detection);
@@ -63,52 +76,41 @@ const singleImageClassify = (params, callback) => {
             data.detections.misc.push(detection);
           }
         })
-      })
+      });
+
+      // determine if we need to do some image processing
+      const imageProcessing = (!!params.annotate.length || !!params.blur.length);
+      
+      if (imageProcessing) {
+
+        // load the image into OpenCV format
+        cv.readImage(tmpName, (err, outputImg) => {
+          
+          if (err) return callback({
+            status: 500,
+            errorMessage: "There was a problem loading the output image for processing",
+            errors: [
+              err
+            ]
+          });
+
+          // perform processing
+          outputImg = annotate(outputImg, params.annotate);
+          outputImg = blur(outputImg, params.blur);
+
+          // save image and add url to output
+          outputImg.save(tmpDetectionsImg);
+          data.imgUrl = `${config.hostname}/images/${filename}`;
+
+          return callback(null, data);
+
+        });
+
+      }
 
       return callback(null, data);
 
     });
-
-
-      // // load the image into opencv
-      // cv.readImage(tmpName, (err, outputImg) => {
-        
-      //   if (err) return callback({
-      //     status: 500,
-      //     errorMessage: "There was a problem loading the output image",
-      //     errors: [
-      //       err
-      //     ]
-      //   });
-
-      //   if (params.annotate) {
-      //     // colours
-      //     const red = [0, 0, 255];
-      //     const green = [0, 255, 0];
-      //     const blue = [255, 0, 0];
-
-      //     // capture the detections and draw a rectangle for each
-      //     const detections = data.detections;
-      //     detections.forEach(detection => {
-      //       outputImg.rectangle([detection.x, detection.y], [detection.w, detection.h], red, 2);
-      //       outputImg.putText(detection.name, detection.x + 10, detection.y + 15, "HERSEY_SIMPLEX", red, 0.5, 2);
-      //     });
-
-      //     // outputImg.putText("TEST", 25, 20, "HERSEY_SIMPLEX", red, 1, 2);
-      //     // outputImg.putText("TEST", 25, 120, "HERSEY_SIMPLEX", green, 2, 3);
-      //     // outputImg.putText("TEST", 25, 220, "HERSEY_SIMPLEX", blue, 4, 4);
-
-      //     // write to tmp detections image
-      //     outputImg.save(tmpDetectionsImg);
-
-      //     data.imgUrl = `/${ts}-${params.image.name}`;
-      //   }
-
-      //   return callback(null, data);
-
-      // });
-
-    // });
 
   });
 

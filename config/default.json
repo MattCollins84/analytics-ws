@@ -1,4 +1,5 @@
 {
+  "hostname": "http://beast:5000",
   "classifiers": {
     "default": {
       "cmd": "default80",

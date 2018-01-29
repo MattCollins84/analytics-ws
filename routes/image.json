@@ -18,6 +18,20 @@
         "type": "classes",
         "default": [],
         "example": ["vehicles", "faces"]
+      },
+      {
+        "name": "annotate",
+        "required": false,
+        "type": "classes",
+        "default": [],
+        "example": ["vehicles", "faces"]
+      },
+      {
+        "name": "blur",
+        "required": false,
+        "type": "classes",
+        "default": [],
+        "example": ["vehicles", "faces"]
       }
     ]
   }
