@@ -1,5 +1,4 @@
 .DS_Store
 node_modules
-testimages
 images/*.png
 images/*.jpg
