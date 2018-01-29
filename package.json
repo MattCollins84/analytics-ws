@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/MattCollins84/analytics-ws#readme",
   "dependencies": {
+    "async": "^2.6.0",
     "express": "^4.16.2",
+    "joi": "^13.1.1",
     "morgan": "^1.9.0",
     "opencv": "^6.0.0",
     "steady-api": "^1.2.0"

@@ -1,0 +1,12 @@
+{
+  "classifiers": {
+    "faces": {
+      "cmd": "face",
+      "classes": {
+        "faces": [
+          "face"
+        ]
+      }
+    }
+  }
+}

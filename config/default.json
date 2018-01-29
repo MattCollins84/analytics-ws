@@ -1,0 +1,17 @@
+{
+  "classifiers": {
+    "default": {
+      "cmd": "default80",
+      "classes": {
+        "people": [
+          "person"
+        ],
+        "vehicles": [
+          "car",
+          "truck",
+          "bus"
+        ]
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
 [
   {
-    "description": "Analyse a single image",
+    "description": "Classify objects in a single image",
     "method": "POST",
-    "url": "/image/analyse",
+    "url": "/image/classify",
     "controller": "image",
-    "action": "singleImage",
+    "action": "singleImageClassify",
     "params": [
       {
         "name": "image",
@@ -13,19 +13,12 @@
         "default": false
       },
       {
-        "name": "annotate",
+        "name": "classes",
         "required": false,
-        "type": "boolean",
-        "default": false
+        "type": "classes",
+        "default": [],
+        "example": ["vehicles", "faces"]
       }
     ]
-  },
-  {
-    "description": "Analyse a single image",
-    "method": "GET",
-    "url": "/image/nothing",
-    "controller": "image",
-    "action": "nothing",
-    "params": []
   }
 ]
