@@ -94,36 +94,30 @@ const singleImageClassify = (params, callback) => {
 
       // determine if we need to do some image processing
       const imageProcessing = (!!params.annotate.length || !!params.blur.length);
-      console.log('what??');
-      if (imageProcessing) {
+      if (!imageProcessing) return callback(null, data);
 
-        // load the image into OpenCV format
-        cv.readImage(tmpName, (err, outputImg) => {
-          
-          if (err) return callback({
-            status: 500,
-            errorMessage: "There was a problem loading the output image for processing",
-            errors: [
-              err
-            ]
-          });
-
-          // perform processing
-          outputImg = annotate(outputImg, collate(data.detections, params.annotate));
-          outputImg = blur(outputImg, collate(data.detections, params.blur));
-
-          // save image and add url to output
-          outputImg.save(tmpDetectionsImg);
-          data.imgUrl = `${config.hostname}/${filename}`;
-
-          console.trace('here')
-          return callback(null, data);
-
+      // load the image into OpenCV format
+      cv.readImage(tmpName, (err, outputImg) => {
+        
+        if (err) return callback({
+          status: 500,
+          errorMessage: "There was a problem loading the output image for processing",
+          errors: [
+            err
+          ]
         });
 
-      }
-      console.trace('here?')
-      return callback(null, data);
+        // perform processing
+        outputImg = annotate(outputImg, collate(data.detections, params.annotate));
+        outputImg = blur(outputImg, collate(data.detections, params.blur));
+
+        // save image and add url to output
+        outputImg.save(tmpDetectionsImg);
+        data.imgUrl = `${config.hostname}/${filename}`;
+
+        return callback(null, data);
+
+      });
 
     });
 
