@@ -75,7 +75,13 @@ const singleImageClassify = (params, callback) => {
         
         // collate into groups
         result.detections.forEach(detection => {
-          const detectionGroup = config.hash[detection.name];
+          const names = detection.name.split(',').map(name => name.trim())
+          const detectionGroup = names.reduce((group, name) => {
+            if (group === null) {
+              group = config.hash[name] || null;
+            }
+            return group;
+          }, null);
           if (params.groups.indexOf(detectionGroup) !== -1) {
             data.detections[detectionGroup].push(detection);
           }
