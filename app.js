@@ -17,6 +17,19 @@ const app = new Steady({
     {
       name: "groups",
       validation: Joi.array().items(config.getAvailableGroups())
+    },
+    {
+      name: "roi",
+      validation: Joi.array().items(
+        Joi.object().keys({
+          x: Joi.number().required(),
+          y: Joi.number().required(),
+          h: Joi.number().required(),
+          w: Joi.number().required(),
+          matchingType: Joi.string().valid("intersect", "contains").required(),
+          type: Joi.string().valid("box").required()
+        })
+      )
     }
   ]
 });

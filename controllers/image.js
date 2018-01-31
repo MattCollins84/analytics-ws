@@ -5,6 +5,7 @@ const Detections = require('../lib/detections');
 const annotate = Detections.annotate;
 const blur = Detections.blur;
 const collate = Detections.collate;
+const filterByROI = Detections.filterByROI;
 const Config = require('../lib/config');
 const config = new Config('custom');
 const async = require('async');
@@ -64,9 +65,15 @@ const singleImageClassify = (params, callback) => {
         data.detections[groupName] = [];
       });
       
+      // filter by ROI
       // collate detections into detection groups
       // default to "misc" if no match
       results.forEach(result => {
+        
+        // filter detections by ROI
+        result.detections = filterByROI(result.detections, params.roi);
+        
+        // collate into groups
         result.detections.forEach(detection => {
           const detectionGroup = config.hash[detection.name];
           if (params.groups.indexOf(detectionGroup) !== -1) {
@@ -75,7 +82,8 @@ const singleImageClassify = (params, callback) => {
           else {
             data.detections.misc.push(detection);
           }
-        })
+        });
+
       });
 
       // determine if we need to do some image processing

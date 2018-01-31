@@ -2,3 +2,4 @@
 node_modules
 images/*.png
 images/*.jpg
+examples.json
