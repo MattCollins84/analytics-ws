@@ -13,23 +13,23 @@
         "default": false
       },
       {
-        "name": "classes",
+        "name": "groups",
         "required": false,
-        "type": "classes",
+        "type": "groups",
         "default": [],
         "example": ["vehicles", "faces"]
       },
       {
         "name": "annotate",
         "required": false,
-        "type": "classes",
+        "type": "groups",
         "default": [],
         "example": ["vehicles", "faces"]
       },
       {
         "name": "blur",
         "required": false,
-        "type": "classes",
+        "type": "groups",
         "default": [],
         "example": ["vehicles", "faces"]
       }

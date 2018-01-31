@@ -2,7 +2,7 @@
   "classifiers": {
     "faces": {
       "cmd": "face",
-      "classes": {
+      "groups": {
         "faces": [
           "face"
         ]

@@ -2,9 +2,9 @@
   {
     "description": "Shows the available class names",
     "method": "GET",
-    "url": "/classes",
+    "url": "/groups",
     "controller": "misc",
-    "action": "classes",
+    "action": "groups",
     "params": [
       {
         "name": "verbose",

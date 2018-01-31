@@ -35,7 +35,7 @@ const singleImageClassify = (params, callback) => {
     // determine which classifier commands we need to run
     // add a new action per command
     const actions = [];
-    config.getClassifierCommands(params.classes).forEach(classifierParam => {
+    config.getClassifierCommands(params.groups).forEach(classifierParam => {
       const func = function(callback) {
         classify.singleImage(tmpName, classifierParam, (err, data) => {
           if (err) return callback(err);
@@ -59,18 +59,18 @@ const singleImageClassify = (params, callback) => {
         }
       }
 
-      // add detection groups for specified classes
-      params.classes.forEach(className => {
-        data.detections[className] = [];
+      // add detection groups for specified groups
+      params.groups.forEach(groupName => {
+        data.detections[groupName] = [];
       });
       
       // collate detections into detection groups
       // default to "misc" if no match
       results.forEach(result => {
         result.detections.forEach(detection => {
-          const detectionClass = config.hash[detection.name];
-          if (params.classes.indexOf(detectionClass) !== -1) {
-            data.detections[detectionClass].push(detection);
+          const detectionGroup = config.hash[detection.name];
+          if (params.groups.indexOf(detectionGroup) !== -1) {
+            data.detections[detectionGroup].push(detection);
           }
           else {
             data.detections.misc.push(detection);

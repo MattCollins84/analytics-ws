@@ -15,8 +15,8 @@ const app = new Steady({
   ],
   customTypes: [
     {
-      name: "classes",
-      validation: Joi.array().items(config.getAvailableClasses())
+      name: "groups",
+      validation: Joi.array().items(config.getAvailableGroups())
     }
   ]
 });
