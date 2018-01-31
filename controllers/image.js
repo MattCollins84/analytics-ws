@@ -94,7 +94,7 @@ const singleImageClassify = (params, callback) => {
 
       // determine if we need to do some image processing
       const imageProcessing = (!!params.annotate.length || !!params.blur.length);
-      
+      console.log('what??');
       if (imageProcessing) {
 
         // load the image into OpenCV format
