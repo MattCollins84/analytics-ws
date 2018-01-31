@@ -116,12 +116,13 @@ const singleImageClassify = (params, callback) => {
           outputImg.save(tmpDetectionsImg);
           data.imgUrl = `${config.hostname}/${filename}`;
 
+          console.log('here')
           return callback(null, data);
 
         });
 
       }
-
+      console.log('here?')
       return callback(null, data);
 
     });
